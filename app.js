@@ -1,3 +1,6 @@
+import 'dotenv/config';
+
+export default
 {
   "expo": {
     "name": "desenlace",
@@ -26,6 +29,10 @@
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      apiKey: process.env.API_KEY,
+      appId: process.env.APP_ID,
     },
     "plugins": [
       "expo-router"
