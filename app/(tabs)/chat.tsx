@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useState, useEffect } from "react"
 import { FlatList, StyleSheet, Keyboard, TextInput, TouchableOpacity } from "react-native"
 
-export default function Chat() {
+export default function ChatScreen() {
   const [keyboardStatus, setKeyboardStatus] = useState('');
 
   useEffect(() => {
