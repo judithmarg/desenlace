@@ -1,1 +1,29 @@
-
+{
+  "project_info": {
+    "project_number": "844671175221",
+    "project_id": "assistanceu",
+    "storage_bucket": "assistanceu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844671175221:android:933c3aa1862b4b2ee0bf7c",
+        "android_client_info": {
+          "package_name": "com.umssjmpl.assistanceu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWbZrZWy68HYaDhHAerjJMMNaRo3RXnJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
