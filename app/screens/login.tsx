@@ -6,12 +6,13 @@ import { ThemedText } from "@/components/ThemedText";
 import { TextInput, Text, TouchableOpacity, Image, View, Alert } from "react-native";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useFonts } from "expo-font";
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
   const [loaded] = useFonts({
     Sofia: require('../../assets/fonts/Sofia-Regular.ttf'),
   });
@@ -22,7 +23,10 @@ export default function LoginScreen({ navigation }: any) {
   const onHandleLogin = () => {
     if (email !== '' && password !== '') {
       signInWithEmailAndPassword(auth, email, password)
-        .then(() => console.log('Exito en login'))
+        .then(()=>{
+          console.log('Exito en inicio de sesion');
+          router.push('/(tabs)/chat');
+        })
         .catch((err) => Alert.alert('Error en', err.message));
     }
   };
@@ -60,8 +64,8 @@ export default function LoginScreen({ navigation }: any) {
         />
       </View>
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.buttonContinue}>
-          <Link push href={'/(tabs)/chat'} style={styles.buttooon}>Continuar</Link>
+        <TouchableOpacity style={styles.buttonContinue} onPress={onHandleLogin}>
+          <Text style={styles.buttooon}>Continuar</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
