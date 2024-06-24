@@ -8,10 +8,12 @@ import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from 'expo-router';
 import { useFonts } from "expo-font";
+import { useUserStore } from "@/navigation/store/userStore";
 
 export default function LoginScreen({ navigation }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {currentUser, setCurrentUser} = useUserStore();
   const router = useRouter();
   const [loaded] = useFonts({
     Sofia: require('../../assets/fonts/Sofia-Regular.ttf'),
@@ -24,6 +26,10 @@ export default function LoginScreen({ navigation }: any) {
     if (email !== '' && password !== '') {
       signInWithEmailAndPassword(auth, email, password)
         .then(()=>{
+          setCurrentUser({
+            _id: Math.random(),
+            name: email
+          });
           console.log('Exito en inicio de sesion');
           router.push('/(tabs)/chat');
         })
