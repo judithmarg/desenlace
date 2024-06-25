@@ -27,7 +27,7 @@ export default function LoginScreen({ navigation }: any) {
       signInWithEmailAndPassword(auth, email, password)
         .then(()=>{
           setCurrentUser({
-            _id: Math.random(),
+            _id: auth.currentUser.uid,
             name: email
           });
           console.log('Exito en inicio de sesion');

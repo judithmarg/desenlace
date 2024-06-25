@@ -55,6 +55,8 @@ export default function ChatScreen() {
       createdAt,
       text,
       user
+    }).then(()=>{
+      console.log('Success');
     }).catch(error => console.log(error));
 
   }, [])
@@ -70,6 +72,7 @@ export default function ChatScreen() {
       }
     };
     onSend([newMessage]);
+    setMessageCurrent('');
   }
 
   return (
@@ -79,18 +82,18 @@ export default function ChatScreen() {
       </ThemedView>
       <KeyboardAvoidingView
         style={{flex:1}}
-        behavior="height"
-        keyboardVerticalOffset={50}
-      >
+        behavior="padding"
+        keyboardVerticalOffset={0}
+        >
         <ScrollView
           contentContainerStyle={styles.messagesContainer}
           keyboardShouldPersistTaps='handled'
         >
       <View style={{display:'flex', flexDirection: 'column', alignItems:'flex-end', marginRight:-30, }}>
         {messages.map((message)=>(
-          <View key={message._id} style={styles.messageMine}>
+            <View key={message._id} style={currentUser._id === message.user._id ?styles.messageMine : styles.messageYours}>
             <Text style={styles.textMine}>{message.text}</Text>
-          </View>
+            </View>
         ))}
       </View>
       </ScrollView>
@@ -101,6 +104,7 @@ export default function ChatScreen() {
           placeholder="Escribe un mensaje..."
           onSubmitEditing={Keyboard.dismiss}
           onChangeText={(text)=>setMessageCurrent(text)}
+          value={messageCurrent}
         />
         <TouchableOpacity onPress={onSendTest} style={styles.send}>
           <Ionicons size={27} name="send-outline" style={styles.iconSend} />
@@ -116,7 +120,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 36, //cambiaa
     paddingBottom: 5,
-    paddingLeft:18,
+    paddingLeft:0,
     paddingRight:6,
   },
   header: {
@@ -133,41 +137,58 @@ const styles = StyleSheet.create({
     letterSpacing: 3,
   },
   messagesContainer:{
-    flexGrow: 1,
-    paddingHorizontal: 35,
+    flexGrow: 0.8,
+    paddingRight: 35,
+    paddingLeft:15,
     paddingVertical:5,
     justifyContent:'flex-end'
   },
   sendMessage: {
-    flex: 1,
-    display: 'flex',
+    // flex: 1,
+    // display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignContent: 'flex-end',
+    // flexWrap: 'wrap',
+    // alignContent: 'flex-end',
+    // alignItems: 'center',
+    // marginHorizontal: -5,
+    gap: 10,
     alignItems: 'center',
-    marginHorizontal: -5,
-    gap: 5,
+    paddingVertical:10,
+    marginHorizontal: 5 ,
+    backgroundColor:'white',
   },
   input: {
+    flex: 1,
     backgroundColor: 'rgb(215, 189, 226)',
     padding: 10,
     borderWidth: 0.5,
     borderColor: 'rgb(107, 49, 133)',
     borderRadius: 18,
     color: 'black',
-    width: '90%',
-    height: 'auto',
+    // s
     fontSize: 16,
   },
   send: {
+    marginLeft:10,
   },
   iconSend: {
     color: 'rgb(215, 189, 226)',
   },
   messageMine: {
     backgroundColor: 'rgb(162, 132, 198)',
+    alignSelf: 'flex-end',
     marginVertical: 4,
     borderRadius: 20,
+    borderBottomRightRadius:0,
+    padding:15,
+    width: 'auto',
+  },
+  messageYours: {
+    backgroundColor: 'rgb(226, 197, 189)',
+    alignSelf:'flex-start',
+    marginVertical: 4,
+    borderRadius: 20,
+    borderBottomLeftRadius:0,
     padding:15,
     width: 'auto',
   },
