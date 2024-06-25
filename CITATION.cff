@@ -1,0 +1,10 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Judith Margarita Paco Llalli"
+  given-names: "judithmarg"
+  orcid:"https://orcid.org/0009-0009-6803-0410"
+title: "AssistanceU"
+version: 1.0.0
+date-released: 2024-06-25
+url: "https://github.com/judithmarg/desenlace"
